@@ -1,0 +1,75 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+
+.loginInfo-usermanagement {
+  padding: 3em;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.menu-usermanagement {
+  outline-style: outset;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  
+}
+
+
+
+.container-usermanagement {
+  position: relative;
+  width: 1280px;
+  height: 500px;
+  outline-style: outset;
+    
+
+}
+
+.addform-usermanagement {
+  display: flex;
+  flex-direction: row;
+  
+}
+ 
+.leftalign-usermanagement {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding-left: 3em;
+  padding-right: 3em;
+  gap: 2.5em;
+  width: 125px;
+}
+
+
+.rightalign-usermanagement {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  gap: 2.75em;
+}
+
+.forms-usermanagement {
+  position: absolute;
+  top: 10%;
+  left: 30%;
+
+}
+
+
+.deleteform-usermanagement {
+  display: flex;
+  flex-direction: row;
+  padding-top: 1.25em;
+  
+}

@@ -1,0 +1,64 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.menu-reservationinfo {
+  outline-style: outset;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  
+}
+
+.page-res-pnr {
+  position: absolute;
+  top: 5%;
+  left: 30%;
+
+}
+
+.tablo-res {
+  outline-style: solid;
+  width: 600px;
+  text-align: left;
+}
+
+.tablo-res-inner {
+  outline-style: solid;
+  width: 600px;
+  text-align: left;
+}
+
+.info-res {
+  padding-bottom: 0.5em;
+}
+
+.pnr-res {
+  text-align: left;
+}
+
+.container-res-pnr-button {
+  text-align: right;
+  margin-top: 1em;
+}
+
+.button-res-pnr {
+  position: relative;
+  top: 5%;
+  outline-style: solid;
+}
+
+.text-res {
+  width: 150px;
+}
+
+.yardimedin {
+  display: flex;
+  flex-direction: row;
+  margin-left: 5px;
+}

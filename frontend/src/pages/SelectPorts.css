@@ -1,0 +1,33 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+ 
+.loginInfo-selectports {
+  padding: 3em;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.menu-selectports {
+  outline-style: outset;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  
+}
+
+.button-selectports {
+  padding: 0.5em;  
+}
+
+.container-selectports {
+  display: flex;
+  flex-direction: row;
+}
+

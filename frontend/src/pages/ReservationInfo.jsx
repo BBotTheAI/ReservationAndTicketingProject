@@ -97,7 +97,7 @@ function ReservationInfo() {
         <div>
           <div className="menu-reservationinfo">
 
-            <button onClick={() => navigate("/ReservationInfo")}>
+            <button onClick={() => navigate("/SelectPorts")}>
               Reservation
             </button>
 

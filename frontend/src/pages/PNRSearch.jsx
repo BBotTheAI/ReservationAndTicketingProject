@@ -20,7 +20,7 @@ function PNRSearch() {
         <div>
           <div className="menu-PNRSearch">
 
-            <button onClick={() => navigate("/ReservationInfo")}>
+            <button onClick={() => navigate("/SelectPorts")}>
               Reservation
             </button>
 

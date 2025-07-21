@@ -7,23 +7,35 @@
 
  
 .loginInfo-selectports {
+  position: absolute;
+  top: 10%;
+  left: 30%;
   padding: 3em;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  align-items: flex-end;
+  align-items: flex-start;
+  text-align: left;
+  gap: 2em;
 }
+
+
+
 
 .menu-selectports {
   outline-style: outset;
   display: flex;
   flex-direction: column;
-  height: fit-content;
+  position: absolute;
+  top: 10%;
+  left: 10%;
   
 }
 
 .button-selectports {
-  padding: 0.5em;  
+  display: flex;
+  align-self: flex-end;
+  outline-style: solid;
 }
 
 .container-selectports {
@@ -31,3 +43,33 @@
   flex-direction: row;
 }
 
+.leftalignedrow {
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  gap: 4em;
+}
+
+.dropdown {
+  width: 200px;
+  
+  gap: 2em;
+}
+
+.zeromargin {
+  margin: 0%;
+  width: 200px;
+}
+
+.count {
+  padding-bottom: 1em;
+}
+
+.select {
+  margin-left: 1em;
+  width: 35px;
+}
+
+.radiobutton {
+  margin-right: 7em;
+}

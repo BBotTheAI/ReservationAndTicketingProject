@@ -70,7 +70,7 @@ function UserManagement() {
       <div>
         <div className="menu-usermanagement">
 
-          <button onClick={() => navigate("/ReservationInfo")}>
+          <button onClick={() => navigate("/SelectPorts")}>
             Reservation
           </button>
 

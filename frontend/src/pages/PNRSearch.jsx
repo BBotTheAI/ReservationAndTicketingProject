@@ -6,12 +6,12 @@ function PNRSearch() {
   //navigate("/reservation", { state: { pnrNO } });
 //pnr numarasını res info sayfasına gönderecek
   const navigate = useNavigate();
-  const [searchPNR, setsearchPNR] = useState(""); 
+  const [pnrNO, setPNR] = useState(""); 
 
   const search = async (e) => {
     e.preventDefault();
 
-    navigate("/ReservationInfo", { state: { searchPNR } });
+    navigate("/ReservationInfo", { state: { pnrNO } });
   };
 
   return (
@@ -39,12 +39,12 @@ function PNRSearch() {
 
 
         <form onSubmit={search} className='container-pnrsearch'>
-          <label htmlFor="searchPNR">PNR NO : </label>
+          <label htmlFor="pnrNO">PNR NO : </label>
           <input
-            id="searchPNR"
+            id="pnrNO"
             type="text"
-            value={searchPNR}
-            onChange={(e) => setsearchPNR(e.target.value)}
+            value={pnrNO}
+            onChange={(e) => setPNR(e.target.value)}
           />
           <button className='button-pnrsearch' type='submit'>
             Search

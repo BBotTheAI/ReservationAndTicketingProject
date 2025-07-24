@@ -1,0 +1,80 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.menu-pay {
+  outline-style: outset;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  
+}
+
+.page-pay-pnr {
+  position: absolute;
+  top: 5%;
+  left: 30%;
+  display: flex;
+  flex-direction: row;
+
+}
+
+.tablo-pay {
+  outline-style: solid;
+  width: 400px;
+  text-align: left;
+}
+
+.tablo-pay-inner {
+  outline-style: solid;
+  width: 400px;
+  text-align: left;
+}
+
+.info-pay {
+  padding-bottom: 0.5em;
+}
+
+.pnr-pay {
+  text-align: left;
+}
+
+.container-pay-pnr-button {
+  text-align: right;
+  margin-top: 1em;
+}
+
+.button-pay-pnr {
+  position: relative;
+  top: 5%;
+  outline-style: solid;
+}
+
+.text-pay {
+  width: 150px;
+}
+
+.yardimedin-pay {
+  display: flex;
+  flex-direction: row;
+  margin-left: 5px;
+}
+
+
+.paymentdiv {
+    margin-left: 75px;
+    margin-top: 50px;
+}
+
+.message-pay {
+    margin-top: 100px;
+}
+
+.option-pay {
+  cursor: pointer;
+}

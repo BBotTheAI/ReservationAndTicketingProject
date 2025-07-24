@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 function ReservationInfo() {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const pnrNO = state?.searchPNR || 1;
+  const pnrNO = state?.pnrNO || 1;
   const [message, setMessage] = useState("");
   const [reservation, setReservation] = useState("null");
   const [flight, setFlight] = useState("null");

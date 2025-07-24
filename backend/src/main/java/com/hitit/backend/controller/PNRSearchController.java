@@ -55,6 +55,28 @@ public class PNRSearchController {
         
     }
 
+    @PostMapping("/makepayment/{pnr}")
+    public ResponseEntity<String> makePayment(@PathVariable int pnr) {
+        Optional<Reservation> optional = reservationRepository.findById(pnr);
+        
+        if (optional.isPresent()) {
+            Reservation res = optional.get();
+
+            res.setStatus("TICKETED");
+
+            reservationRepository.save(res);
+
+            return ResponseEntity.ok("Reservation Ticketed");
+            
+        }else {
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("not found");
+        
+        }
+        
+        
+    }
+
     @GetMapping("/reservation/{pnr}")
     public ResponseEntity<Reservation> getReservation(@PathVariable int pnr) {
         Optional<Reservation> opt = reservationRepository.findById(pnr);

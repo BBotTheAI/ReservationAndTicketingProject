@@ -1,0 +1,91 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+ 
+.loginInfo-PassengerInfo {
+  position: absolute;
+  top: 10%;
+  left: 30%;
+  padding: 3em;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  text-align: left;
+  gap: 2em;
+}
+
+.loginInfo2-PassengerInfo {
+  position: absolute;
+  top: 10%;
+  left: 60%;
+  padding: 3em;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  text-align: left;
+  gap: 2em;
+}
+
+
+
+
+.menu-PassengerInfo {
+  outline-style: outset;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  
+}
+
+.button-PassengerInfo {
+  display: flex;
+  align-self: flex-end;
+  outline-style: solid;
+}
+
+.container-PassengerInfo {
+  display: flex;
+  flex-direction: row;
+}
+
+.leftalignedrow-PassengerInfo {
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  gap: 4em;
+}
+
+.leftalignedcolumn-PassengerInfo {
+  text-align: left;
+  gap: 4em;
+  width: 350px;
+}
+
+.dropdown-PassengerInfo {
+  width: 200px;
+  
+  gap: 2em;
+}
+
+.zeromargin-PassengerInfo {
+  margin: 0%;
+  width: 200px;
+}
+
+.count-PassengerInfo {
+  padding-bottom: 1em;
+}
+
+.select-PassengerInfo {
+  margin-left: 1em;
+  width: 35px;
+}
+

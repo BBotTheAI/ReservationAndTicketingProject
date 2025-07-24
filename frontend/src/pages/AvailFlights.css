@@ -1,0 +1,52 @@
+.menu-availflights {
+  outline-style: outset;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  gap: 10px;
+}
+ 
+.flight-info {
+  margin: 20px 0;
+  font-size: 18px;
+  font-weight: bold;
+  outline-style: solid;
+}
+ 
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 300px;
+  outline-style: solid;
+}
+ 
+.option {
+  padding: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  outline-style: solid;
+}
+ 
+.business {
+  background-color: green;
+  color: white;
+}
+ 
+.economy {
+  background-color: orange;
+  color: black;
+}
+ 
+.continue {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  outline-style: solid;
+}
+
+.testt {
+  outline-style: solid;
+}

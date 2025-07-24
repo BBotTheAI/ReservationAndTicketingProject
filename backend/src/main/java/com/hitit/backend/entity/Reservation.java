@@ -2,6 +2,7 @@ package com.hitit.backend.entity;
 
 import java.util.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,6 +15,7 @@ public class Reservation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "pnr")
     private int pnr;
 
     private String name;
@@ -33,6 +35,8 @@ public class Reservation {
     private String email;
 
     private String status;
+
+    private int price;
 
     public int getPnr() {
         return pnr;
@@ -114,7 +118,15 @@ public class Reservation {
         this.status = status;
     }
 
+    public int getPrice() {
+        return price;
+    }
 
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    
     
 
 

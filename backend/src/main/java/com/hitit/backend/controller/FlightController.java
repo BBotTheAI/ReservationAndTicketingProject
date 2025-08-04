@@ -16,8 +16,10 @@ import com.hitit.backend.dto.FlightSearchDto;
 import com.hitit.backend.entity.Flight;
 import com.hitit.backend.entity.FlightId;
 import com.hitit.backend.entity.ReservationFlight;
+import com.hitit.backend.entity.ReturnReservationFlight;
 import com.hitit.backend.repository.FlightRepository;
 import com.hitit.backend.repository.ReservationFlightsRepository;
+import com.hitit.backend.repository.ReturnReservationFlightsRepository;
 
 
 
@@ -30,6 +32,9 @@ public class FlightController {
 
     @Autowired
     private ReservationFlightsRepository reservationFlightsRepository;
+
+    @Autowired
+    private ReturnReservationFlightsRepository returnReservationFlightRepository;
 
     
     @GetMapping("/searchflightno/{pnr}")
@@ -59,6 +64,27 @@ public class FlightController {
         }
        
     }
+
+    @GetMapping("/returnflight/{pnr}")
+    public ResponseEntity<Flight> getReturnFlightfromPNR(@PathVariable int pnr) {
+        Optional<ReturnReservationFlight> optional = returnReservationFlightRepository.findById(pnr);
+
+        if (optional.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+        ReturnReservationFlight resFlight = optional.get();
+
+        FlightId flightId = new FlightId();
+        flightId.setCabin(resFlight.getCabin());
+        flightId.setFlightno(resFlight.getFlightno());
+
+        Optional<Flight> optFlight = flightRepository.findById(flightId);
+
+        return optFlight.map(ResponseEntity::ok)
+                        .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+    }
+
 
 
     @PostMapping("/flight/search")

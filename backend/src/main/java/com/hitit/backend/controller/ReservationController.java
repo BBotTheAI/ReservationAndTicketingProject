@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hitit.backend.entity.Reservation;
 import com.hitit.backend.entity.ReservationFlight;
+import com.hitit.backend.entity.ReturnReservationFlight;
 import com.hitit.backend.repository.ReservationFlightsRepository;
 import com.hitit.backend.repository.ReservationRepository;
+import com.hitit.backend.repository.ReturnReservationFlightsRepository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -25,6 +27,9 @@ public class ReservationController {
 
     @Autowired
     private ReservationFlightsRepository reservationFlightsRepository;
+
+    @Autowired
+    private ReturnReservationFlightsRepository returnReservationFlightsRepository;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -60,6 +65,21 @@ public class ReservationController {
 
 
         reservationFlightsRepository.save(reservationFlight);
+        return ResponseEntity.ok("Relation Created");
+
+        
+    }
+
+    @PostMapping("/createreturnresflightrel")
+    public ResponseEntity<String>  createReturnReservationFligh(@RequestBody ReturnReservationFlight res) {
+        
+        
+        if (returnReservationFlightsRepository.existsById(res.getPnr())) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
+
+
+        returnReservationFlightsRepository.save(res);
         return ResponseEntity.ok("Relation Created");
 
         

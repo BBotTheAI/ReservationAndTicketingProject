@@ -11,6 +11,8 @@ function Payment() {
   const [reservation, setReservation] = useState("null");
   const [flight, setFlight] = useState("null");
   const [selectedPayment, setSelectedPayment] = useState('')
+  const [returnFlight, setReturnFlight] = useState(null);
+
 
   useEffect(() => {
     const fetchReservation = async () => {
@@ -53,6 +55,22 @@ function Payment() {
 
     fetchFlight();
   }, [pnrNO]);
+
+  useEffect(() => {
+    const fetchReturnFlight = async () => {
+      try {
+        const res = await fetch(`http://localhost:8080/returnflight/${pnrNO}`);
+        if (res.ok) {
+          const data = await res.json();
+          setReturnFlight(data);
+        }
+      } catch (err) {
+        console.log("No return flight found.");
+      }
+    };
+    fetchReturnFlight();
+  }, [pnrNO]);
+
 
   
 
@@ -102,6 +120,10 @@ function Payment() {
 
 
   }
+
+
+  const totalPrice = flight.price + (returnFlight?.price || 0);
+
 
   return (
     <>
@@ -157,6 +179,25 @@ function Payment() {
                         </div>            
                     </div>
                     </div>
+
+                    { returnFlight && (
+                      <div className='tablo-pay'>
+                        <div className='tablo-pay-inner'>
+                          <p>Return Flight Info</p>
+                        </div>
+                        <div className='info-pay'>
+                          <div className='yardimedin'>
+                            <p className='text-pay'>{returnFlight?.id?.flightno}</p>
+                            <p className='text-pay'>
+                              {new Date(returnFlight.date).toLocaleDateString()}{" "}
+                              {new Date(returnFlight.date).toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit', hour12: false }).replace(':', '.')}
+                            </p>
+                            <p className='text-pay'>{returnFlight.departureport} - {returnFlight.arrivalport}</p>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
                 </div>
 
             </div>
@@ -164,7 +205,7 @@ function Payment() {
           <div className='paymentdiv'>
 
             <p>
-                Total Payment : {flight.price} USD
+                Total Payment : {totalPrice} USD
             </p>
 
             <label className='option-pay'>

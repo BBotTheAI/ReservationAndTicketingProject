@@ -9,6 +9,8 @@ function ReservationInfo() {
   const [message, setMessage] = useState("");
   const [reservation, setReservation] = useState("null");
   const [flight, setFlight] = useState("null");
+  const [returnFlight, setReturnFlight] = useState(null);
+
   
 
   useEffect(() => {
@@ -53,6 +55,22 @@ function ReservationInfo() {
     fetchFlight();
   }, [pnrNO]);
 
+  useEffect(() => {
+    const fetchReturnFlight = async () => {
+      try {
+        const res = await fetch(`http://localhost:8080/returnflight/${pnrNO}`);
+        if (res.ok) {
+          const data = await res.json();
+          setReturnFlight(data);
+        }
+      } catch (err) {
+        console.error("Return flight fetch error:", err);
+      }
+    };
+
+    fetchReturnFlight();
+  }, [pnrNO]);
+
   
 
   const rawbDayDate = reservation.bday;
@@ -68,6 +86,20 @@ function ReservationInfo() {
       minute: '2-digit',
       hour12: false
     }).replace(':', '.');
+
+  let normalReturnDate = "";
+  let normalReturnTime = "";
+
+  if (returnFlight && returnFlight.date) {
+    const returnDateObj = new Date(returnFlight.date);
+    normalReturnDate = returnDateObj.toLocaleDateString();
+    normalReturnTime = returnDateObj.toLocaleTimeString(
+      'tr-TR', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+      }).replace(':', '.');
+  }
 
 
   const cancelRes = async (e) => {
@@ -145,6 +177,22 @@ function ReservationInfo() {
                 </div>            
               </div>
             </div>
+
+            {returnFlight && (
+              <div className='tablo-res'>
+                <div className='tablo-res-inner'>
+                  <p>Return Flight Info</p>
+                </div>
+                <div className='info-res'>
+                  <div className='yardimedin'>
+                    <p className='text-res'>{returnFlight?.id?.flightno}</p>
+                    <p className='text-res'>{normalReturnDate} {normalReturnTime}</p>
+                    <p className='text-res'>{returnFlight.departureport} - {returnFlight.arrivalport}</p>
+                  </div>            
+                </div>
+              </div>
+            )}
+
           </div>
 
           <div className='container-res-pnr-button'>

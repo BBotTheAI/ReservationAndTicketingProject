@@ -56,7 +56,7 @@ function PassengerInfo() {
 
 
                 if (returnFlight) {
-                    const rel2 = await fetch("http://localhost:8080/createresflightrel", {
+                    const rel2 = await fetch("http://localhost:8080/createreturnresflightrel", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({

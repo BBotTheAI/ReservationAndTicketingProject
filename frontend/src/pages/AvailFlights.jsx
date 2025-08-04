@@ -37,6 +37,7 @@ function AvailFlights() {
 
   };
 
+
   return (
     <div className="container-avail">
       <div className="menu-selectports">
@@ -49,7 +50,7 @@ function AvailFlights() {
         <h2 className="title-avail">Departure Flights</h2>
         {flights.length > 0 ? (
           flights.map((flight, index) => (
-            <div key={index} className="card-avail">
+            <div key={index} className={`card-avail ${flight.id.cabin === "ECONOMY" ? "economy-bg" : ""} ${flight.id.cabin === "BUSINESS" ? "business-bg" : ""}`}>
               <input
                 type="radio"
                 name="departureFlight"
@@ -72,7 +73,7 @@ function AvailFlights() {
           <h2 className="title-avail">Return Flights</h2>
           {returnFlights.length > 0 ? (
             returnFlights.map((flight, index) => (
-              <div key={index} className="card-avail">
+              <div key={index} className={`card-avail ${flight.id.cabin === "ECONOMY" ? "economy-bg" : ""} ${flight.id.cabin === "BUSINESS" ? "business-bg" : ""}`} >
                 <input
                   type="radio"
                   name="returnFlight"

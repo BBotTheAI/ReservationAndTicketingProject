@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hitit.backend.entity.Reservation;
+import com.hitit.backend.entity.ReservationFlight;
+import com.hitit.backend.repository.ReservationFlightsRepository;
 import com.hitit.backend.repository.ReservationRepository;
 
 import jakarta.persistence.EntityManager;
@@ -20,6 +22,9 @@ public class ReservationController {
 
     @Autowired
     private ReservationRepository reservationRepository;
+
+    @Autowired
+    private ReservationFlightsRepository reservationFlightsRepository;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -34,6 +39,7 @@ public class ReservationController {
         }
 
         Reservation saved = reservationRepository.save(reservation);
+        saved.setStatus("PENDING");
         entityManager.refresh(saved);
 
         System.out.println("Generated pnr : " + saved.getPnr());
@@ -43,6 +49,22 @@ public class ReservationController {
         return ResponseEntity.ok(pnr);
         
     }
+
+    @PostMapping("/createresflightrel")
+    public ResponseEntity<String>  createReservationFligh(@RequestBody ReservationFlight reservationFlight) {
+        
+        
+        if (reservationFlightsRepository.existsById(reservationFlight.getPnr())) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
+
+
+        reservationFlightsRepository.save(reservationFlight);
+        return ResponseEntity.ok("Relation Created");
+
+        
+    }
+    
     
 
 

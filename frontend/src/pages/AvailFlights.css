@@ -1,52 +1,49 @@
-.menu-availflights {
-  outline-style: outset;
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 10%;
-  left: 10%;
-  gap: 10px;
-}
- 
-.flight-info {
-  margin: 20px 0;
-  font-size: 18px;
-  font-weight: bold;
-  outline-style: solid;
-}
- 
-.options {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 300px;
-  outline-style: solid;
-}
- 
-.option {
+.container-avail {
+  font-family: Arial, sans-serif;
   padding: 20px;
-  font-size: 16px;
-  cursor: pointer;
-  outline-style: solid;
-}
- 
-.business {
-  background-color: green;
-  color: white;
-}
- 
-.economy {
-  background-color: orange;
-  color: black;
-}
- 
-.continue {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding: 10px 20px;
-  outline-style: solid;
+  background-color: #1e1e1e; /* dark background */
+  color: #ffffff; /* white text */
+  min-height: 100vh;
 }
 
-.testt {
-  outline-style: solid;
+.section-avail {
+  margin-bottom: 30px;
+}
+
+.title-avail {
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #ffffff;
+  border-bottom: 1px solid #999;
+  padding-bottom: 5px;
+}
+
+.card-avail {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  border: 1px solid #555;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  background-color: #2a2a2a;
+  color: #ffffff;
+}
+
+.info-avail p {
+  margin: 4px 0;
+}
+
+.continue-avail {
+  padding: 10px 20px;
+  background-color: #28a745;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.continue-avail:hover {
+  background-color: #1f8433;
 }

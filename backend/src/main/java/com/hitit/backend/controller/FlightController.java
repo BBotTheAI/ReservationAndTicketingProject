@@ -48,7 +48,7 @@ public class FlightController {
 
         FlightId flightId = new FlightId();
         flightId.setCabin(resFlight.getCabin());
-        flightId.setFlightno(resFlight.getFlightNo());
+        flightId.setFlightno(resFlight.getFlightno());
 
         Optional<Flight> optFlight = flightRepository.findById(flightId);
 

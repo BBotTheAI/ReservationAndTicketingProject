@@ -23,13 +23,7 @@ public class ReservationFlight {
         this.pnr = pnr;
     }
 
-    public String getFlightNo() {
-        return flightno;
-    }
-
-    public void setFlightNo(String flightNo) {
-        this.flightno = flightNo;
-    }
+    
 
     public String getCabin() {
         return cabin;
@@ -37,6 +31,14 @@ public class ReservationFlight {
 
     public void setCabin(String cabin) {
         this.cabin = cabin;
+    }
+
+    public String getFlightno() {
+        return flightno;
+    }
+
+    public void setFlightno(String flightno) {
+        this.flightno = flightno;
     }
 
     

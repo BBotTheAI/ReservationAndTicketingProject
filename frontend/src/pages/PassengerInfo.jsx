@@ -1,5 +1,5 @@
 import "./PassengerInfo.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 
 function PassengerInfo() {
@@ -11,6 +11,19 @@ function PassengerInfo() {
     const [name, setName] = useState("");
     const [surname, setSurname] = useState("");
 
+    const { state } = useLocation();
+    const departureFlight = state?.departureFlight;
+    const returnFlight = state?.returnFlight;
+
+    const departureflightno = departureFlight?.flightno;
+    const departurecabin = departureFlight?.cabin;
+    const arrivalflightno = returnFlight?.flightno;
+    const arrivalcabin = returnFlight?.cabin;
+
+
+
+
+
 
 
     
@@ -20,30 +33,56 @@ function PassengerInfo() {
 
         try {
             const response = await fetch("http://localhost:8080/createres", {
-                method: "POST",
-                headers: {
-                "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ name, surname, passportno, nationalityno, telno, email }),
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, surname, passportno, nationalityno, telno, email }),
             });
 
             const newres = await response.text();
             const pnr = parseInt(newres);
-            console.log("PNR no : " + pnr);
-            if (response.ok) {
-                navigate("/Payment", { state: { pnr } })
+
+            if (response.ok && !isNaN(pnr)) {
+                const rel1 = await fetch("http://localhost:8080/createresflightrel", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                    pnr,
+                    flightno: departureflightno,
+                    cabin: departurecabin
+                    }),
+                });
+
+                
+
+
+                if (returnFlight) {
+                    const rel2 = await fetch("http://localhost:8080/createresflightrel", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        pnr,
+                        flightno: arrivalflightno,
+                        cabin: arrivalcabin
+                    }),
+                    });
+
+                    console.log("RETURN FLIGHT REL:", {
+                    pnr,
+                    flightno: arrivalflightno,
+                    cabin: arrivalcabin
+                    });
+
+                }
+
+                navigate("/Payment", { state: { pnr } });
             } else {
-                const errorMsg = newres;
-                alert(`Hata: ${errorMsg}`);
+            alert("Rezervasyon oluşturulamadı: " + newres);
             }
         } catch (err) {
             alert(`Bağlantı hatası: ${err.message}`);
         }
-
-
-
-
     };
+
 
     return (
         <>
@@ -171,7 +210,7 @@ function PassengerInfo() {
                             </div>
 
                             <button className="button-selectports-PassengerInfo" type="submit">
-                                Search
+                                Create Reservation
                             </button>
                         </div>
 

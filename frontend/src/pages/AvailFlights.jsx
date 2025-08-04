@@ -1,82 +1,101 @@
-import "./AvailFlights.css";
+import './AvailFlights.css';
 import { useLocation, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
- 
+import { useState } from "react";
+
 function AvailFlights() {
-  const navigate = useNavigate();
   const { state } = useLocation();
+  const navigate = useNavigate();
+
   const flights = state?.flights || [];
- 
-  const [selectedFlightNo, setSelectedFlightNo] = useState("");
-  const [selectedCabin, setSelectedCabin] = useState("");
- 
+  const returnFlights = state?.returnFlights || [];
+  const tripType = state?.tripType || "oneway";
+
+  const [selectedDeparture, setSelectedDeparture] = useState(null);
+  const [selectedReturn, setSelectedReturn] = useState(null);
+
   const handleContinue = () => {
-    if (!selectedFlightNo || !selectedCabin) {
-      alert("Lütfen uçuş ve kabin tipi seçin.");
+    if (!selectedDeparture || (tripType === "roundtrip" && !selectedReturn)) {
+      alert("Lütfen tüm gerekli uçuş seçimlerini yapın.");
       return;
     }
- 
-    console.log("Seçilen uçuş:", selectedFlightNo);
-    console.log("Seçilen kabin:", selectedCabin);
- 
+
+    navigate("/PassengerInfo", {
+      state: {
+        departureFlight: {
+          flightno: selectedDeparture.id.flightno,
+          cabin: selectedDeparture.id.cabin
+        },
+        returnFlight: tripType === "roundtrip" && selectedReturn
+          ? {
+              flightno: selectedReturn.id.flightno,
+              cabin: selectedReturn.id.cabin
+            }
+          : null,
+        tripType: tripType
+      }
+    });
+
   };
 
-  const flightPackage = [];
-  
-  useEffect(() => {
-    const checkFlightNo = () => {
-      for (var i = 0; i < flights; i++) {
-        for (var j = 0; j < flights; j++) {
-          if (flights[i].flightno == flights[i].flightno){
-            flightPackage.push([flights[i], flights[i]])
-          }
-        }
-      }
-
-
-    }
-  checkFlightNo();
-    
-  }, [flightPackage, flights]);
-
-
-
-
- 
   return (
-    <>
-      <div className="menu-availflights">
-        <button className="button" onClick={() => navigate("/SelectPorts")}>Reservation</button>
-        <button className="button" onClick={() => navigate("/PNRSearch")}>PNR Search</button>
-        <button className="button" onClick={() => navigate("/UserManagement")}>User Management</button>
+    <div className="container-avail">
+      <div className="menu-selectports">
+        <button className='button' onClick={() => navigate("/SelectPorts")}>Reservation</button>
+        <button className='button' onClick={() => navigate("/PNRSearch")}>PNR Search</button>
+        <button className='button' onClick={() => navigate("/UserManagement")}>User Management</button>
       </div>
- 
-      <div className="flights-list">
-        {flightPackage.map((flight, index) => (
-          <div key={index} className="flight-box">
-            <p><b>{flight.flightno}</b></p>
-            <p>Cabin: {flight.cabin}</p>
-            <p>Fiyat: {flight.price} USD</p>
-            <label>
+
+      <div className="section-avail">
+        <h2 className="title-avail">Departure Flights</h2>
+        {flights.length > 0 ? (
+          flights.map((flight, index) => (
+            <div key={index} className="card-avail">
               <input
                 type="radio"
-                name="selectedFlight"
-                value={`${flight.flightno}-${flight.cabin}`}
-                onChange={() => {
-                  setSelectedFlightNo(flight.flightno);
-                  setSelectedCabin(flight.cabin);
-                }}
-                checked={selectedFlightNo === flight.flightno && selectedCabin === flight.cabin}
+                name="departureFlight"
+                onChange={() => setSelectedDeparture(flight)}
               />
-              Seç
-            </label>
-          </div>
-        ))}
+              <div className="info-avail">
+                <p><strong>Flight No:</strong> {flight.id.flightno}</p>
+                <p><strong>Cabin:</strong> {flight.id.cabin}</p>
+                <p><strong>Price:</strong> {flight.price}₺</p>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p>No departure flights found.</p>
+        )}
       </div>
- 
-      <button className="continue" onClick={handleContinue}>CONTINUE</button>
-    </>
+
+      {tripType === "roundtrip" && (
+        <div className="section-avail">
+          <h2 className="title-avail">Return Flights</h2>
+          {returnFlights.length > 0 ? (
+            returnFlights.map((flight, index) => (
+              <div key={index} className="card-avail">
+                <input
+                  type="radio"
+                  name="returnFlight"
+                  onChange={() => setSelectedReturn(flight)}
+                />
+                <div className="info-avail">
+                  <p><strong>Flight No:</strong> {flight.id.flightno}</p>
+                  <p><strong>Cabin:</strong> {flight.id.cabin}</p>
+                  <p><strong>Price:</strong> {flight.price}₺</p>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p>No return flights found.</p>
+          )}
+        </div>
+      )}
+
+      <button className="continue-avail" onClick={handleContinue}>
+        Continue
+      </button>
+    </div>
   );
 }
- 
+
 export default AvailFlights;
